@@ -1,5 +1,5 @@
-import { Toggle } from "./toggle";
 import { Wrapper } from "./wrapper";
+import { Toggle, ToggleSkeleton } from "./toggle";
 import { Recommended, RecommendedSkeleton } from "./recommended";
 
 import { getRecommended } from "@/lib/recommended-service";
@@ -20,6 +20,7 @@ export async function Sidebar() {
 export function SidebarSkeleton() {
   return (
     <aside className="fixed left-0 flex flex-col w-[70px] lg:w-60 h-full bg-background border-r border-[#2d2e35] z-50">
+      <ToggleSkeleton />
       <RecommendedSkeleton />
     </aside>
   );
