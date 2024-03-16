@@ -3,15 +3,17 @@
 import { toast } from "sonner";
 import { useTransition } from "react";
 
+// import { onBlock, onUnblock } from "@/actions/block";
 import { onFollow, onUnfollow } from "@/actions/follow";
+
 import { Button } from "@/components/ui/button";
 
 interface ActionsProps {
-  isFollowing: boolean;
   userId: string;
+  isFollowing: boolean;
 }
 
-export function Actions({ isFollowing, userId }: ActionsProps) {
+export function Actions({ userId, isFollowing }: ActionsProps) {
   const [isPending, startTransition] = useTransition();
 
   function handleFollow() {
@@ -38,21 +40,39 @@ export function Actions({ isFollowing, userId }: ActionsProps) {
     });
   }
 
-  function onClick() {
-    if (isFollowing) {
-      handleUnfollow();
-    } else {
-      handleFollow();
-    }
-  }
+  // function handleBlock() {
+  //   startTransition(() => {
+  //     onBlock(userId)
+  //       .then((data) => {
+  //         toast.success(`Blocked the user ${data.blocked.username}`);
+  //       })
+  //       .catch(() => {
+  //         toast.error("Something went wrong");
+  //       });
+  //   });
+  // }
+
+  // function handleUnblock() {
+  //   startTransition(() => {
+  //     onUnblock(userId)
+  //       .then((data) => {
+  //         toast.success(`Unblocked the user ${data.blocked.username}`);
+  //       })
+  //       .catch(() => {
+  //         toast.error("Something went wrong");
+  //       });
+  //   });
+  // }
 
   return (
-    <Button
-      variant="primary"
-      disabled={isPending}
-      onClick={onClick}
-    >
-      {isFollowing ? "Unfollow" : "Follow"}
-    </Button>
+    <>
+      <Button
+        variant="primary"
+        disabled={isPending}
+        onClick={isFollowing ? handleUnfollow : handleFollow}
+      >
+        {isFollowing ? "Unfollow" : "Follow"}
+      </Button>
+    </>
   );
 }
