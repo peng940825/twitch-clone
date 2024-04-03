@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useChatSidebar } from "@/store/use-chat-sidebar";
 import { useViewerToken } from "@/hooks/use-viewer-token";
 
+import { InfoCard } from "./info-card";
 import { ChatToggle } from "./chat-toggle";
 import { Chat, ChatSkeleton } from "./chat";
 import { Video, VideoSkeleton } from "./video";
@@ -54,6 +55,12 @@ export function StreamPlayer({ user, stream, isFollowing }: StreamPlayerProps) {
             imageUrl={user.imageUrl}
             viewerIdentity={identity}
             isFollowing={isFollowing}
+          />
+          <InfoCard
+            name={stream.name}
+            thumbnailUrl={stream.thumbnailUrl}
+            hostIdentity={user.id}
+            viewerIdentity={identity}
           />
         </div>
         <div className={cn("col-span-1", collapsed && "hidden")}>
