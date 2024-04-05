@@ -27,6 +27,18 @@ export async function getFollowedUsers() {
           },
         },
       },
+      orderBy: [
+        {
+          following: {
+            stream: {
+              isLive: "desc",
+            },
+          },
+        },
+        {
+          createdAt: "desc",
+        },
+      ],
     });
 
     return followedUsers;
