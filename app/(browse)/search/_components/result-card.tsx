@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { User, Stream } from "@prisma/client";
+import { User } from "@prisma/client";
 import { formatDistanceToNow } from "date-fns";
 
 import { Skeleton } from "@/components/ui/skeleton";
@@ -7,7 +7,14 @@ import { VerifiedMark } from "@/components/verified-mark";
 import { Thumbnail, ThumbnailSkeleton } from "@/components/thumbnail";
 
 interface ResultCardProps {
-  data: Stream & { user: User };
+  data: {
+    id: string;
+    user: User;
+    name: string;
+    isLive: boolean;
+    updatedAt: Date;
+    thumbnailUrl: string | null;
+  };
 }
 
 export function ResultCard({ data }: ResultCardProps) {
