@@ -67,7 +67,10 @@ export function ChatForm({
           isFollowersOnly={isFollowersOnly}
         />
         <Input
-          className={cn("border-white/10", isFollowersOnly && "rounded-t-none border-t-0")}
+          className={cn(
+            "border-white/10",
+            (isDelayed || isFollowersOnly) && "rounded-t-none border-t-0"
+          )}
           value={value}
           disabled={isDisabled}
           onChange={(e) => onChange(e.target.value)}

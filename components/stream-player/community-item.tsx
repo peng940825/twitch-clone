@@ -48,7 +48,7 @@ export function CommunityItem({
   return (
     <div
       className={cn(
-        "flex items-center justify-between w-full p-2 rounded-md text-sm hover:bg-white/5",
+        "group flex items-center justify-between w-full p-2 rounded-md text-sm hover:bg-white/5",
         isPending && "opacity-50 pointer-events-none"
       )}
     >
@@ -57,7 +57,7 @@ export function CommunityItem({
         <Hint label="Block">
           <Button
             variant="ghost"
-            className="h-auto w-auto p-1 opacity-0 group-hover:opacity-100 transition"
+            className="h-auto w-auto p-1 opacity-0 transition group-hover:opacity-100"
             disabled={isPending}
             onClick={handleBlock}
           >
