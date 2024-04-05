@@ -1,6 +1,5 @@
 "use client";
 
-import { User, Stream } from "@prisma/client";
 import { LiveKitRoom } from "@livekit/components-react";
 
 import { cn } from "@/lib/utils";
@@ -14,14 +13,30 @@ import { Chat, ChatSkeleton } from "./chat";
 import { Video, VideoSkeleton } from "./video";
 import { Header, HeaderSkeleton } from "./header";
 
-interface StreamPlayerProps {
-  user: User & {
-    stream: Stream | null;
-    _count: {
-      followedBy: number;
-    };
+type CustomStream = {
+  id: string;
+  name: string;
+  isLive: boolean;
+  isChatEnabled: boolean;
+  isChatDelayed: boolean;
+  isChatFollowersOnly: boolean;
+  thumbnailUrl: string | null;
+};
+
+type CustomUser = {
+  id: string;
+  username: string;
+  bio: string | null;
+  stream: CustomStream | null;
+  imageUrl: string;
+  _count: {
+    followedBy: number;
   };
-  stream: Stream;
+};
+
+interface StreamPlayerProps {
+  user: CustomUser;
+  stream: CustomStream;
   isFollowing: boolean;
 }
 
